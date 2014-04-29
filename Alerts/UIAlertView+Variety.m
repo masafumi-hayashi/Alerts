@@ -145,8 +145,10 @@ static UIAlertView * make_alert(NSString * title, NSString * message)
 - (instancetype)other:(NSString *)title block:(void (^)())block
 {
     if (![self hasButton:title]) {
-        [self addButtonWithTitle:NSLocalizedStringFromTable(title, @"Alerts", nil)];
-
+        NSUInteger idx = [self addButtonWithTitle:NSLocalizedStringFromTable(title, @"Alerts", nil)];
+        if ([title isEqualToString:@"Cancel"]) {
+            self.cancelButtonIndex = idx;
+        }
     }
     [[self blockDelegate].blocks setObject:[block copy] forKey:title];
     return self;
