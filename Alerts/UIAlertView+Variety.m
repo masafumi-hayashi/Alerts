@@ -144,8 +144,23 @@ static UIAlertView * make_alert(NSString * title, NSString * message)
 
 - (instancetype)other:(NSString *)title block:(void (^)())block
 {
-    [self addButtonWithTitle:NSLocalizedStringFromTable(title, @"Alerts", nil)];
+    if (![self hasButton:title]) {
+        [self addButtonWithTitle:NSLocalizedStringFromTable(title, @"Alerts", nil)];
+
+    }
     [[self blockDelegate].blocks setObject:[block copy] forKey:title];
     return self;
 }
+
+- (BOOL)hasButton:(NSString *)title
+{
+    NSUInteger len = self.numberOfButtons;
+    for (NSUInteger i = 0; i < len; i++) {
+        if ([[self buttonTitleAtIndex:i] isEqualToString:title]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end
