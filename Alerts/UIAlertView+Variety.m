@@ -23,7 +23,7 @@ typedef void(^Block)();
 - (void)show
 {
     if (self.numberOfButtons == 0) {
-        [self ok];
+        [self addOkButton];
     }
     [super show];
 }
@@ -117,32 +117,32 @@ static UIAlertView * make_alert(NSString * title, NSString * message)
     return delegate;
 }
 
-- (instancetype)ok
+- (instancetype)addOkButton
 {
-    return [self ok:nil];
+    return [self addOkButton:nil];
 }
 
-- (instancetype)ok:(void (^)())block
+- (instancetype)addOkButton:(void (^)())block
 {
-    return [self other:@"OK" block:block];
+    return [self addButton:@"OK" block:block];
 }
 
-- (instancetype)cancel
+- (instancetype)addCancelButton
 {
-    return [self cancel:nil];
+    return [self addCancelButton:nil];
 }
 
-- (instancetype)cancel:(void (^)())block
+- (instancetype)addCancelButton:(void (^)())block
 {
-    return [self other:@"Cancel" block:block];
+    return [self addButton:@"Cancel" block:block];
 }
 
-- (instancetype)other:(NSString *)title
+- (instancetype)addButton:(NSString *)title
 {
-    return [self other:title block:nil];
+    return [self addButton:title block:nil];
 }
 
-- (instancetype)other:(NSString *)title block:(void (^)())block
+- (instancetype)addButton:(NSString *)title block:(void (^)())block
 {
     if (![self hasButton:title]) {
         NSUInteger idx = [self addButtonWithTitle:NSLocalizedStringFromTable(title, @"Alerts", nil)];

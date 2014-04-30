@@ -16,10 +16,10 @@
 + (instancetype)alertWithInfoMessage:(NSString *)message;
 + (instancetype)alertWithWarningMessage:(NSString *)message;
 - (instancetype)title:(NSString *)title;
-- (instancetype)ok;
-- (instancetype)ok:(void(^)())block;
-- (instancetype)cancel;
-- (instancetype)cancel:(void(^)())block;
-- (instancetype)other:(NSString *)title;
-- (instancetype)other:(NSString *)title block:(void(^)())block;
+- (instancetype)addOkButton;
+- (instancetype)addOkButton:(void(^)())block;
+- (instancetype)addCancelButton;
+- (instancetype)addCancelButton:(void(^)())block;
+- (instancetype)addButton:(NSString *)title;
+- (instancetype)addButton:(NSString *)title block:(void(^)())block;
 @end

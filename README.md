@@ -7,9 +7,9 @@ UIAlertView simple apis.
       [[UIAlertView alertWithMessage:@"some message"] show]
 
 ## Event Handling
-      [[[[UIAlertView alertWithMessage:@"some message"] cancel:^{
+      [[[[UIAlertView alertWithMessage:@"some message"] addCancelButton:^{
         // ...
-      }] ok:^{
+      }] addOkButton:^{
         // ...
       }] show]
 
